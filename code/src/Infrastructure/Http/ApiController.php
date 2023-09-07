@@ -35,7 +35,7 @@ class ApiController extends AbstractController
     ): JsonResponse {
         try {
             $data = $cache->get('people_data', function (CacheItemInterface $cacheItem) use ($starWarsGateway) {
-                $cacheItem->expiresAfter($_SERVER['CACHE_TIME_EXPIRE']);
+                $cacheItem->expiresAfter((int)$_SERVER['CACHE_TIME_EXPIRE']);
 
                 return $starWarsGateway->getPeople();
             });
