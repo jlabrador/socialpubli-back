@@ -1,0 +1,41 @@
+version: '3.6'
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID:-0}
+        GROUP_ID: ${GROUP_ID:-0}
+    volumes:
+      - ../code:/var/www/socialpubli
+    links:
+      - db
+    networks:
+      - socialpubli
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../code:/var/www/socialpubli
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    links:
+      - api
+    networks:
+      - socialpubli
+  db:
+    image: library/mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=socialpubli
+      - MYSQL_USER=socialpubli_user
+      - MYSQL_PASSWORD=1234
+    networks:
+      - socialpubli
+networks:
+  socialpubli:
+    driver: bridge
