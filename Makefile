@@ -24,5 +24,9 @@ api-bash:
 	docker exec -it $(PROJECT_NAME)_api_1 bash
 nginx-bash:
 	docker exec -it $(PROJECT_NAME)_nginx_1 bash
+api-vendors-install:
+	docker exec -it $(PROJECT_NAME)_api_1 composer install
+api-vendor-require:
+	docker exec -it $(PROJECT_NAME)_api_1 composer require $(package)
 api-tests:
 	docker exec -it $(PROJECT_NAME)_api_1 vendor/bin/phpunit
