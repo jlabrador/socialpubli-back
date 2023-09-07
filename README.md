@@ -16,20 +16,26 @@ Requerimientos
 Instalación
 ------------
 
-Ejecutar en el directorio raíz de la aplicación el siguiente comando:
+* Instalar las dependencias del proyecto con:
+
+```bash
+$ composer install
+```
+
+* Ejecutar en el directorio raíz de la aplicación el siguiente comando:
 
 ```bash
 $ make install
 $ make up
 ```
 
-**Importante** Editar el archivo /etc/hosts y añadir la siguiente linea
+**Importante:** Editar el archivo /etc/hosts y añadir la siguiente linea
 
 ```bash
 127.0.0.1	api.socialpubli.local
 ```
 
-**Nota** Nuestra aplicación será expuesta a través del puerto 8888.
+**Nota:** Nuestra aplicación será expuesta a través del puerto 8888.
 
 Uso
 -----
