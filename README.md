@@ -45,6 +45,22 @@ http://api.socialpubli.local:8888/api/doc
 
 http://api.socialpubli.local:8888/api/doc.json
 
+Cache
+-----
+
+La aplicación tiene una cache programada con la propia cache de symfony. Por defecto 
+el valor de expiración de datos de la cache es de 300 segundos y se podrá modificar
+dentro de las variables de entorno del proyecto con el siguiente valor:
+
+```bash
+CACHE_TIME_EXPIRE=300
+```
+
+http://api.socialpubli.local:8888/api/doc
+
+**Nota** También está disponible la documentación en json ;)
+
+http://api.socialpubli.local:8888/api/doc.json
 
 Documentación de la api
 -----
@@ -52,15 +68,6 @@ Documentación de la api
 Se ha creado una documentación de uso de la api accesible desde la url:
 
 http://api.socialpubli.local:8888/api/people
-
-Tests
------
-
-Ejecuta este comando para pasar los test:
-
-```bash
-$ make test
-```
 
 Contacto
 -----

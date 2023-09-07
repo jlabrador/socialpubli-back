@@ -4,12 +4,14 @@ namespace App\Infrastructure\Http;
 
 use App\Infrastructure\Gateway\StarWarsGateway;
 use MongoDB\Driver\Exception\Exception;
+use Psr\Cache\CacheItemInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Annotations as OA;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use App\Domain\Model\PeopleDto;
+use Symfony\Contracts\Cache\CacheInterface;
 
 class ApiController extends AbstractController
 {
@@ -25,11 +27,20 @@ class ApiController extends AbstractController
      * )
      * /
      */
-    public function index(StarWarsGateway $starWarsGateway): JsonResponse
+    public function index(
+        StarWarsGateway $starWarsGateway,
+        CacheInterface $cache
+    ): JsonResponse
     {
         try {
+            $data = $cache->get('people_data', function(CacheItemInterface $cacheItem) use ($starWarsGateway) {
+
+                $cacheItem->expiresAfter($_SERVER['CACHE_TIME_EXPIRE']);
+                return $starWarsGateway->getPeople();
+            });
+
             return $this->json([
-                "data" => $starWarsGateway->getPeople(),
+                "data" => $data,
             ]);
         } catch (Exception $exception) {
             return $this->json([
