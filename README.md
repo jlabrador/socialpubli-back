@@ -4,29 +4,23 @@ Prueba Técnica SocialPubli Backend
 La prueba técnica del backend de "SocialPubli" consiste en un EP que devuelve un listado de
 los personajes de Star Wars.
 
-La prueba se ha desarrollado en symfony 6.3.4 siguiendo un modelo de arquitectura 
+La prueba se ha desarrollado en symfony 6.3.4 siguiendo un modelo de arquitectura
 hexagonal.
 
 Requerimientos
 ------------
 
-  * Docker;
-  * y los requerimientos [de una aplicación symfony 6][2].
+* Docker;
+* y los requerimientos [de una aplicación symfony 6].
 
 Instalación
 ------------
 
-* Instalar las dependencias del proyecto con:
-
-```bash
-$ composer install
-```
-
-* Ejecutar en el directorio raíz de la aplicación el siguiente comando:
+* Ejecutar en el directorio raíz de la aplicación el siguiente comando para
+instalar los contenedores dockers necesarios para correr la aplicación:
 
 ```bash
 $ make install
-$ make up
 ```
 
 **Importante:** Editar el archivo /etc/hosts y añadir la siguiente linea
@@ -54,7 +48,7 @@ http://api.socialpubli.local:8888/api/doc.json
 Cache
 -----
 
-La aplicación tiene una cache programada con la propia cache de symfony. Por defecto 
+La aplicación tiene una cache programada con la propia cache de symfony. Por defecto
 el valor de expiración de datos de la cache es de 300 segundos y se podrá modificar
 dentro de las variables de entorno del proyecto con el siguiente valor:
 
@@ -75,10 +69,23 @@ Se ha creado una documentación de uso de la api accesible desde la url:
 
 http://api.socialpubli.local:8888/api/people
 
+Tests
+-----
+
+Se ha creado un test de aplicación que llama al ep expuesto pero devuelve
+un 500 por la cache que se ha implementado. Habría que crear un mock de la
+cache que evitara este error.
+
+Para ejecutar los test se hace con el siguiente comando:
+
+```bash
+make api-tests
+```
+
 Contacto
 -----
 
-Cualquier duda de instalación o uso de la aplicación la puedes consultar en 
+Cualquier duda de instalación o uso de la aplicación la puedes consultar en
 los siguientes contactos:
 
 * Télefono: 655727029
