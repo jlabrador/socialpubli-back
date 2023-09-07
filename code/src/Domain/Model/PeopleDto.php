@@ -11,9 +11,7 @@ class PeopleDto
         private string $hair_color,
         private string $skin_color,
         private string $eye_color
-
-    )
-    {
+    ) {
     }
 
     public function getName(): string
@@ -57,5 +55,4 @@ class PeopleDto
             'eye_color' => $this->eye_color,
         ];
     }
-
 }

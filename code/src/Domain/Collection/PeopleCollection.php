@@ -8,8 +8,7 @@ class PeopleCollection
 {
     public function __construct(
         private ?array $people
-    )
-    {
+    ) {
         if (is_null($this->people)) {
             $this->people = [];
         }
@@ -29,6 +28,7 @@ class PeopleCollection
             ))->serialize();
             $result[] = $item;
         }
+
         return $result;
     }
 
@@ -40,5 +40,4 @@ class PeopleCollection
 
         return $object->$property;
     }
-
 }

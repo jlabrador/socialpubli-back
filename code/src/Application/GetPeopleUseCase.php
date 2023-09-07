@@ -10,5 +10,4 @@ class GetPeopleUseCase
     {
         return (new PeopleCollection($people))->get();
     }
-
 }
